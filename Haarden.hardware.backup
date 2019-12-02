@@ -16,36 +16,6 @@
         <ID>M315</ID>
         <Name>JX2-Systembus</Name>
       </Node>
-      <Node>
-        <ID>M310</ID>
-        <Name>JX3-THI2-RTD</Name>
-        <UserName>Mod1</UserName>
-        <IOModuleNr>2</IOModuleNr>
-      </Node>
-      <Node>
-        <ID>M310</ID>
-        <Name>JX3-THI2-RTD</Name>
-        <UserName>Mod2</UserName>
-        <IOModuleNr>3</IOModuleNr>
-      </Node>
-      <Node>
-        <ID>M301</ID>
-        <Name>JX3-AI4</Name>
-        <UserName>Mod3</UserName>
-        <IOModuleNr>4</IOModuleNr>
-      </Node>
-      <Node>
-        <ID>M302</ID>
-        <Name>JX3-AO4</Name>
-        <UserName>Mod4</UserName>
-        <IOModuleNr>5</IOModuleNr>
-      </Node>
-      <Node>
-        <ID>M306</ID>
-        <Name>JX3-DIO16</Name>
-        <UserName>Mod5</UserName>
-        <IOModuleNr>6</IOModuleNr>
-      </Node>
     </Node>
     <ControllerData>
       <Type>24</Type>
@@ -67,7 +37,7 @@
       <EthernetIPAddress>192.168.10.15</EthernetIPAddress>
       <EthernetTimeout>2000</EthernetTimeout>
       <EthernetPortnumber>default</EthernetPortnumber>
-      <EthernetPortnumberPCOM>default</EthernetPortnumberPCOM>
+      <EthernetPortnumberPCOM />
       <PortnumberUseDefaults>true</PortnumberUseDefaults>
       <SerialCOMPort>1</SerialCOMPort>
       <SerialTimeout>4000</SerialTimeout>
@@ -84,7 +54,7 @@
       <CANNodeId>127</CANNodeId>
       <CANBaudrate>250</CANBaudrate>
       <CANTimeout>4000</CANTimeout>
-      <CANHardwareId>-1</CANHardwareId>
+      <CANHardwareId>0</CANHardwareId>
       <CANIOPort>0</CANIOPort>
       <CANInterrupt>0</CANInterrupt>
       <CANDeviceIdx>1</CANDeviceIdx>

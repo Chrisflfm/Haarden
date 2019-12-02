@@ -2,215 +2,23 @@
 <WinSym-SymbolFile FileVersion="1" ProductVersion="5.6.0.4828">
 	<!--
 -->
-	<Rows Count="102">
-		<Symbol>
-			<Name>
-				<![CDATA[DI]]>
-			</Name>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[ImotCt]]>
-			</Name>
-			<Value>
-				<![CDATA[1000601]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[CT van stroom module]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[AI]]>
-			</Name>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Temp1]]>
-			</Name>
-			<Value>
-				<![CDATA[101]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Temp haard 1 rechts]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Temp2]]>
-			</Name>
-			<Value>
-				<![CDATA[102]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Temp haard 1 links]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Temp3]]>
-			</Name>
-			<Value>
-				<![CDATA[103]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Temp haard 2 rechts]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Temp4]]>
-			</Name>
-			<Value>
-				<![CDATA[104]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Temp haard 2 links]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Klep1]]>
-			</Name>
-			<Value>
-				<![CDATA[105]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Ist pos klep 1]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[klep2]]>
-			</Name>
-			<Value>
-				<![CDATA[106]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Ist pos klep 2]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[Ivent]]>
-			</Name>
-			<Value>
-				<![CDATA[108]]>
-			</Value>
-			<Type>
-				<![CDATA[input]]>
-			</Type>
-			<Comment>
-				<![CDATA[Inom ventilator]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[AO]]>
-			</Name>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[klepPos1]]>
-			</Name>
-			<Value>
-				<![CDATA[101]]>
-			</Value>
-			<Type>
-				<![CDATA[output]]>
-			</Type>
-			<Comment>
-				<![CDATA[Set pos klep 1]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[klepPos2]]>
-			</Name>
-			<Value>
-				<![CDATA[102]]>
-			</Value>
-			<Type>
-				<![CDATA[output]]>
-			</Type>
-			<Comment>
-				<![CDATA[Set pos klep 2]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[DO]]>
-			</Name>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[hrVent]]>
-			</Name>
-			<Value>
-				<![CDATA[1000609]]>
-			</Value>
-			<Type>
-				<![CDATA[output]]>
-			</Type>
-			<Comment>
-				<![CDATA[Ventilator]]>
-			</Comment>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[hrAlarm]]>
-			</Name>
-			<Value>
-				<![CDATA[1000610]]>
-			</Value>
-			<Type>
-				<![CDATA[output]]>
-			</Type>
-			<Comment>
-				<![CDATA[Alarm]]>
-			</Comment>
-		</Symbol>
+	<Rows Count="99">
 		<Symbol/>
-		<Symbol>
-			<Name>
-				<![CDATA[Tasks]]>
-			</Name>
-		</Symbol>
-		<Symbol>
-			<Name>
-				<![CDATA[tMain]]>
-			</Name>
-			<Value>
-				<![CDATA[1]]>
-			</Value>
-			<Type>
-				<![CDATA[int]]>
-			</Type>
-			<Comment>
-				<![CDATA[Main Task Autorun]]>
-			</Comment>
-		</Symbol>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
+		<Symbol/>
 		<Symbol/>
 		<Symbol/>
 		<Symbol/>
@@ -302,6 +110,6 @@
 		<ColumnWidthType>105</ColumnWidthType>
 		<ColumnWidthDefault>100</ColumnWidthDefault>
 		<ColumnWidthName2>0</ColumnWidthName2>
-		<ColumnWidthComment>1141</ColumnWidthComment>
+		<ColumnWidthComment>789</ColumnWidthComment>
 	</Columns>
 </WinSym-SymbolFile>
