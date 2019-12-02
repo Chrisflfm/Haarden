@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WORKSPACE_OPTIONS>
+  <Version>1_0</Version>
+  <Projects>
+    <ActiveProject>Haarden</ActiveProject>
+    <Project>
+      <Name>Haarden</Name>
+      <ActiveConfiguration>Release</ActiveConfiguration>
+      <Configurations>
+        <Configuration>
+          <Name>Release</Name>
+          <ForceRebuild>0</ForceRebuild>
+          <AxesVerified>1</AxesVerified>
+          <CreateDAFile>0</CreateDAFile>
+          <DownloadDAFile>0</DownloadDAFile>
+          <CreateExportFile>0</CreateExportFile>
+          <MonitorTask>0</MonitorTask>
+          <DataDump>
+            <CurrentGroupName />
+            <ApplyChanges>1</ApplyChanges>
+            <DownloadFilename />
+            <UploadFilename />
+            <OverwriteExisting>1</OverwriteExisting>
+            <ForceOldDAFormat>0</ForceOldDAFormat>
+            <OpenDocumentAfterUpload>1</OpenDocumentAfterUpload>
+          </DataDump>
+        </Configuration>
+      </Configurations>
+    </Project>
+  </Projects>
+  <Breakpoints />
+  <Bookmarks />
+  <ChildFrames>
+    <Document>
+      <ViewFrame>
+        <DocPathName>.\Haarden.stxp</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAABLGAAAAAPMCAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>0</ViewScrollVert>
+        <Line>10</Line>
+        <Column>8</Column>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>.\Haarden.stxd</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAABLGAAAAAPMCAAAAA</WindowPlacement>
+        <ViewScrollHoriz>1</ViewScrollHoriz>
+        <ViewScrollVert>1</ViewScrollVert>
+        <IsActiveChildFrame>1</IsActiveChildFrame>
+        <Row>16</Row>
+        <Column>2</Column>
+        <SelectionStartChar>0</SelectionStartChar>
+        <SelectionEndChar>0</SelectionEndChar>
+      </ViewFrame>
+    </Document>
+  </ChildFrames>
+  <ExpandedTreenodes>
+    <Treenode>
+      <Location>Haarden</Location>
+    </Treenode>
+    <Treenode>
+      <Location>Haarden/Declaration</Location>
+    </Treenode>
+  </ExpandedTreenodes>
+  <ExpandedTreeNodesHWM>
+    <Location>Haarden System</Location>
+    <Location>Haarden System/Release</Location>
+    <Location>Haarden System/Release/Hardware</Location>
+    <Location>Haarden System/Release/Hardware/Network</Location>
+    <Location>Haarden System/Release/Hardware/Network/JC-340</Location>
+  </ExpandedTreeNodesHWM>
+</WORKSPACE_OPTIONS>

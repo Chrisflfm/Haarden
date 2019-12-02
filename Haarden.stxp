@@ -1,0 +1,11 @@
+Var
+	nResult:	Int;
+	bSendError	Bool;
+End_var
+
+Task tMain Autorun
+	if bsendError Then
+		nresult := EmailSend('/ErrorMails/MainError.email');
+		bSendError := False;
+	End_If
+End_Task
