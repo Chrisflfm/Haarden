@@ -47,7 +47,7 @@ Var
 	hrIvent:		Bool	at %QX 100000609; //relais ventilator
 	hrAlm:			Bool	at %QX 100000610; //relais Alarm
 
-//**********************Programma variabelen******************************
+//**********************Programma variabelen en registers******************************
 // Email
 	nResult:		Int;
 	bSendError:		Bool;

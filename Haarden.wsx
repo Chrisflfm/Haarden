@@ -34,16 +34,68 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAALJDAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>265</ViewScrollVert>
+        <IsActiveChildFrame>1</IsActiveChildFrame>
+        <Line>319</Line>
+        <Column>0</Column>
+        <SelectionStartLine>0</SelectionStartLine>
+        <SelectionStartColumn>0</SelectionStartColumn>
+        <SelectionEndLine>319</SelectionEndLine>
+        <SelectionEndColumn>0</SelectionEndColumn>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>.\Haarden.stxd</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
+        <ViewScrollHoriz>1</ViewScrollHoriz>
+        <ViewScrollVert>1</ViewScrollVert>
+        <Row>1</Row>
+        <Column>1</Column>
+        <SelectionStartChar>0</SelectionStartChar>
+        <SelectionEndChar>0</SelectionEndChar>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\JC340API.stxp</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
         <ViewScrollVert>0</ViewScrollVert>
-        <IsActiveChildFrame>1</IsActiveChildFrame>
-        <Line>159</Line>
-        <Column>8</Column>
-        <SelectionStartLine>159</SelectionStartLine>
-        <SelectionStartColumn>1</SelectionStartColumn>
-        <SelectionEndLine>159</SelectionEndLine>
-        <SelectionEndColumn>8</SelectionEndColumn>
+        <Line>0</Line>
+        <Column>0</Column>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\Platforms.stxp</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>0</ViewScrollVert>
+        <Line>0</Line>
+        <Column>0</Column>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\StdSysAPI.stxp</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>0</ViewScrollVert>
+        <Line>0</Line>
+        <Column>0</Column>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\SwapEndianAPI.stxp</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADFGAAAAACADAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>0</ViewScrollVert>
+        <Line>0</Line>
+        <Column>0</Column>
       </ViewFrame>
     </Document>
   </ChildFrames>
@@ -52,17 +104,11 @@
       <Location>Haarden</Location>
     </Treenode>
     <Treenode>
-      <Location>Haarden/Declaration</Location>
+      <Location>Haarden/Program</Location>
     </Treenode>
     <Treenode>
-      <Location>Haarden/System Files</Location>
+      <Location>Haarden/Declaration</Location>
     </Treenode>
   </ExpandedTreenodes>
-  <ExpandedTreeNodesHWM>
-    <Location>Haarden System</Location>
-    <Location>Haarden System/Release</Location>
-    <Location>Haarden System/Release/Hardware</Location>
-    <Location>Haarden System/Release/Hardware/Network</Location>
-    <Location>Haarden System/Release/Hardware/Network/JC-340</Location>
-  </ExpandedTreeNodesHWM>
+  <ExpandedTreeNodesHWM />
 </WORKSPACE_OPTIONS>

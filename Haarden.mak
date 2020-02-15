@@ -45,10 +45,11 @@
       <Version Name="COMPATIBLEVER" Value="256" />
     </Versions>
     <Options>
+      <Option Name="ForceBuild" />
       <Option Name="CreateErrorOutput" Value="0" />
       <Option Name="WarnLevel" Value="4" />
       <Option Name="WarnStackSize" Value="4096" />
-      <Option Name="CodeSize" Value="4096" />
+      <Option Name="CodeSize" Value="16777216" />
       <Option Name="MaxDataSize" Value="25165824" />
       <Option Name="CodeOptimization" Value="1" />
       <Option Name="ShortBoolEvaluation" Value="1" />
