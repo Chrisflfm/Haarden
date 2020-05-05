@@ -174,7 +174,7 @@
 						<PortAddress>832</PortAddress>
 					</PCPPLC>
 					<Ethernet>
-						<IPAddress>192.168.10.15</IPAddress>
+						<IPAddress>192.168.1.10</IPAddress>
 						<Timeout>2000</Timeout>
 						<PortAddress>0</PortAddress>
 					</Ethernet>

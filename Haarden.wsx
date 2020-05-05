@@ -14,7 +14,7 @@
           <CreateDAFile>0</CreateDAFile>
           <DownloadDAFile>0</DownloadDAFile>
           <CreateExportFile>0</CreateExportFile>
-          <MonitorTask>-1</MonitorTask>
+          <MonitorTask>1</MonitorTask>
           <DataDump>
             <CurrentGroupName />
             <ApplyChanges>1</ApplyChanges>
@@ -34,64 +34,42 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAACBCAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>152</ViewScrollVert>
+        <ViewScrollVert>307</ViewScrollVert>
         <IsActiveChildFrame>1</IsActiveChildFrame>
-        <Line>212</Line>
-        <Column>13</Column>
+        <Line>341</Line>
+        <Column>8</Column>
       </ViewFrame>
     </Document>
     <Document>
       <ViewFrame>
-        <DocPathName>.\Haarden.stxd</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
+        <DocPathName>HWM:Haarden System\Release\Hardware\Network\JC-340\CPU</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAACBCAAAAA</WindowPlacement>
+        <ViewScrollHoriz>0</ViewScrollHoriz>
+        <ViewScrollVert>0</ViewScrollVert>
+        <Project>Haarden</Project>
+        <Config>Release</Config>
+        <MDIWindowID>CPU</MDIWindowID>
+        <AxisKey />
+        <Setup>0</Setup>
+        <ModuleID>M312</ModuleID>
+        <HwNodeIndex>0_0</HwNodeIndex>
+        <BusNodeID />
+        <IsPubSubModule>0</IsPubSubModule>
+        <SplitterPos>160</SplitterPos>
+      </ViewFrame>
+    </Document>
+    <Document>
+      <ViewFrame>
+        <DocPathName>.\Haarden.stxs</DocPathName>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAACBCAAAAA</WindowPlacement>
         <ViewScrollHoriz>1</ViewScrollHoriz>
         <ViewScrollVert>1</ViewScrollVert>
         <Row>1</Row>
-        <Column>1</Column>
+        <Column>3</Column>
         <SelectionStartChar>0</SelectionStartChar>
         <SelectionEndChar>0</SelectionEndChar>
-      </ViewFrame>
-    </Document>
-    <Document>
-      <ViewFrame>
-        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\JC340API.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
-        <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>0</ViewScrollVert>
-        <Line>0</Line>
-        <Column>0</Column>
-      </ViewFrame>
-    </Document>
-    <Document>
-      <ViewFrame>
-        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\Platforms.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
-        <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>0</ViewScrollVert>
-        <Line>0</Line>
-        <Column>0</Column>
-      </ViewFrame>
-    </Document>
-    <Document>
-      <ViewFrame>
-        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\StdSysAPI.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
-        <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>0</ViewScrollVert>
-        <Line>0</Line>
-        <Column>0</Column>
-      </ViewFrame>
-    </Document>
-    <Document>
-      <ViewFrame>
-        <DocPathName>C:\Program Files (x86)\Jetter\JetSym 5.6.0\Platforms\SwapEndianAPI.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAALFGAAAAAAECAAAAA</WindowPlacement>
-        <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>0</ViewScrollVert>
-        <Line>0</Line>
-        <Column>0</Column>
       </ViewFrame>
     </Document>
   </ChildFrames>
@@ -105,6 +83,18 @@
     <Treenode>
       <Location>Haarden/Declaration</Location>
     </Treenode>
+    <Treenode>
+      <Location>Haarden/Setup</Location>
+    </Treenode>
+    <Treenode>
+      <Location>Haarden/System Files</Location>
+    </Treenode>
   </ExpandedTreenodes>
-  <ExpandedTreeNodesHWM />
+  <ExpandedTreeNodesHWM>
+    <Location>Haarden System</Location>
+    <Location>Haarden System/Release</Location>
+    <Location>Haarden System/Release/Hardware</Location>
+    <Location>Haarden System/Release/Hardware/Network</Location>
+    <Location>Haarden System/Release/Hardware/Network/JC-340</Location>
+  </ExpandedTreeNodesHWM>
 </WORKSPACE_OPTIONS>

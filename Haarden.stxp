@@ -53,15 +53,16 @@ Var
 	bSendError:		Bool;
 // Flags
 	bInAuto:		Bool;
+	bInErrActive:	Bool;
 // Registers
 	Offset1:		Int		at %vl 1000000; //Offset B voor Y=AX+B start 40
 	Factor1:		Int		at %vl 1000002; //Offset A voor Y=AX+B start 1
 	Soll1: 			double;
-	AvgTemp1:		double;
+	AvgTemp1:		Int		at %vl 1000003
 	Offset2:		Int		at %vl 1000004; //Offset B voor Y=AX+B start 40
 	Factor2:		Int		at %vl 1000006; //Offset A voor Y=AX+B start 1
 	Soll2: 			double;
-	AvgTemp2:		double;
+	AvgTemp2:		Int		at %vl 1000007
 	OffsetIvent:	Int		at %vl 1000008; //Offset B voor Y=AX+B start 0
 	FactorIvent:	Int		at %vl 1000010; //Offset A voor Y=AX+B start 1
 	IstIvent:		double; //ventilator capaciteit 0% - 100% 
@@ -75,16 +76,16 @@ Var
 	IstKlep2:		double; //klep positie 0% - 100% 
 	
 //**********************Fouten*******************************************
-	Ft01_CapaciteitVent:	Bool; //de vraag capaciteit en de geleverde capiciteti zijn buiten proportie
-	Ft02_IventHoog:			Bool; //Max stroom overschreden
-	Ft03_Positieklep1:		Bool; //Klep 1 positie terug melding niet gelijk aan positie vraag
-	Ft04_Positieklep2:		Bool; //Klep 2 positie terug melding niet gelijk aan positie vraag
-	Ft05_ModuleRtd1:		Bool; //fout in module 2
-	Ft06_ModuleRtd2:		Bool; //fout in module 3
-	Ft07_ModuleAI4:			Bool; //fout in module 4
-	Ft08_ModuleAO4:			Bool; //fout in module 5
-	Ft09_ModuleDIO16:		Bool; //fout in module 6
-	Ft10_EmailError:		Bool; //fout bij verzenden Email
+	Ft01_CapaciteitVent:	Bool	at %MX 1; //de vraag capaciteit en de geleverde capiciteti zijn buiten proportie
+	Ft02_IventHoog:			Bool	at %MX 2; //Max stroom overschreden
+	Ft03_Positieklep1:		Bool	at %MX 3; //Klep 1 positie terug melding niet gelijk aan positie vraag
+	Ft04_Positieklep2:		Bool	at %MX 4; //Klep 2 positie terug melding niet gelijk aan positie vraag
+	Ft05_ModuleRtd1:		Bool	at %MX 5; //fout in module 2
+	Ft06_ModuleRtd2:		Bool	at %MX 6; //fout in module 3
+	Ft07_ModuleAI4:			Bool	at %MX 7; //fout in module 4
+	Ft08_ModuleAO4:			Bool	at %MX 8; //fout in module 5
+	Ft09_ModuleDIO16:		Bool	at %MX 9; //fout in module 6
+	Ft10_EmailError:		Bool	at %MX 10; //fout bij verzenden Email
 	Ft01_mailSend:			Bool; //send mail 1 keer
 	Ft02_mailSend:			Bool; //send mail 1 keer
 	Ft03_mailSend:			Bool; //send mail 1 keer
@@ -94,11 +95,16 @@ Var
 	Ft07_mailSend:			Bool; //send mail 1 keer
 	Ft08_mailSend:			Bool; //send mail 1 keer
 	Ft09_mailSend:			Bool; //send mail 1 keer
+	debug:					Bool;//voor debug testen
+	debugMailSend:			Bool;//voor debug testen
+//**********************Timers********************************************
+	stWait:	  				Timer;
+	
 End_var
 
 Task tMain Autorun
 //Init
-	hrAl := False;
+	hrAlm := False;
 	hrIvent := False;
 	SetKlep1 := 0;
 	SetKlep2 := 0;
@@ -155,6 +161,7 @@ Task tMain Autorun
 	Ft07_mailSend := False;
 	Ft08_mailSend := False;
 	Ft09_mailSend := False;
+	bSendError	  := False;
 
 //**************************************Start Main loop**************************************
 	bInAuto := True;
@@ -180,12 +187,23 @@ Task tMain Autorun
 		else
 			hrIvent := False;
 		End_If;		
-	
+//************************************Email bewaking************************************************
+		if nResult < 0 then
+			bSendError := True
+		else	
+			bSendError := False
+		End_if
 	End_While;
 	
 End_Task
 
 Task tError Autorun
+bInErrActive := True;
+//While not bInErrActive Do
+//	TimerStart(stWait,T#1s);
+//	When TimerEnd(stWait) Continue
+//End_While;
+While bInErrActive Do
 //*************************************Ft01_CapaciteitVent****************************************
 	TotalCap := soll1 + soll2; //tel de capaciteit van beide kleppen samen
 	TotalCapScaled := TotalCap/2; //herschaal naar max 100%
@@ -193,7 +211,7 @@ Task tError Autorun
 	if not Limits(IstIvent,TotalCapScaled-5,TotalCapScaled+5) Then;
 		Ft01_CapaciteitVent := True;
 		if not Ft01_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft01.email');
+			nResult := EmailSend('/EMAIL/Ft01email.cfg');
 			Ft01_mailSend := True;
 		End_If
 	else
@@ -203,10 +221,10 @@ Task tError Autorun
 	
 
 //*************************************Ft02_IventHoog****************************************
-	If ctIventAlm or IstIvent > 100 Then //contacxt geschakeld of stroom hoger danb Inom
+	If ctIventAlm or IstIvent > 100 Then //contact geschakeld of stroom hoger danb Inom
 		Ft02_IventHoog := True;
 		if not Ft02_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft02.email');
+			nResult := EmailSend('/EMAIL/Ft02email.cfg');
 			Ft02_mailSend := True;
 		End_If
 	Else
@@ -219,7 +237,7 @@ Task tError Autorun
 	if not Limits(Soll1,IstKlep1-5,IstKlep1+5) then;
 		Ft03_Positieklep1 := True;
 		if not Ft03_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft03.email');
+			nResult := EmailSend('/EMAIL/Ft03email.cfg');
 			Ft03_mailSend := True;
 		End_If
 	else
@@ -232,7 +250,7 @@ Task tError Autorun
 	if not Limits(Soll2,IstKlep2-5,IstKlep2+5) then;
 		Ft04_Positieklep2 := True;
 		if not Ft04_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft04.email');
+			nResult := EmailSend('/EMAIL/Ft04email.cfg');
 			Ft04_mailSend := True;
 		End_If
 	else
@@ -244,7 +262,7 @@ Task tError Autorun
 	If StatTemp1L <> 65536 or StatTemp1R <> 65536 or Temp1_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
 		Ft05_ModuleRtd1 := True;
 		if not Ft05_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft05.email');
+			nResult := EmailSend('/EMAIL/Ft05email.cfg');
 			Ft05_mailSend := True;
 		End_If
 	Else
@@ -256,7 +274,7 @@ Task tError Autorun
 	If StatTemp2L <> 65536 or StatTemp2R <> 65536 or Temp2_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
 		Ft06_ModuleRtd2 := True;
 		if not Ft06_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft06.email');
+			nResult := EmailSend('/EMAIL/Ft06email.cfg');
 			Ft06_mailSend := True;
 		End_If
 	Else
@@ -268,7 +286,7 @@ Task tError Autorun
 	If AI_Mod <> 0xC1010000 or StatPosKlep1 <> 0x00010000 or StatPosklep2 <> 0x00010000 Then
 		Ft07_ModuleAI4 := True;
 		if not Ft07_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft07.email');
+			nResult := EmailSend('/EMAIL/Ft07email.cfg');
 			Ft07_mailSend := True;
 		End_If
 	Else
@@ -280,7 +298,7 @@ Task tError Autorun
 	If  AO_Mod <> 0 Then
 		Ft08_ModuleAO4 := True;
 		if not Ft08_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft08.email');
+			nResult := EmailSend('/EMAIL/Ft08email.cfg');
 			Ft08_mailSend := True;
 		End_If
 	Else
@@ -292,7 +310,7 @@ Task tError Autorun
 	If  IO_Mod <> 0 Then
 		Ft09_ModuleDIO16 := True;
 		if not Ft09_mailSend then
-			nResult := EmailSend('/ErrorMails/Ft09.email');
+			nResult := EmailSend('/EMAIL/Ft09email.cfg');
 			Ft09_mailSend := True;
 		End_If
 	Else
@@ -300,20 +318,26 @@ Task tError Autorun
 		Ft09_mailSend := False;
 	End_If;
 //*************************************Ft10_EmailError********************************************
-	If bSendError Then
-		Ft10_EmailError := True;	
-	Else
-		Ft10_EmailError :=False
-	End_If;
+	 Ft10_EmailError := bSendError;
 
 //************************************Error*************************************************
 	If 	Ft01_CapaciteitVent or Ft02_IventHoog or Ft03_Positieklep1 or Ft04_Positieklep2 or Ft05_ModuleRtd1 or Ft06_ModuleRtd2 or Ft07_ModuleAI4 or Ft08_ModuleAO4 or Ft09_ModuleDIO16 or Ft10_EmailError then
-		hrAlm : =True;
+		hrAlm := True;
 	Else
 		hrAlm := False;
 	End_If;
 	
-	
-	
+//*********************************Dubug testen*****************************************
+	If debug Then
+		nResult := 1;
+		if not debugMailSend then
+			nResult := EmailSend('/EMAIL/EmailDefaults.cfg');
+			debugMailSend := True;
+			debug := False
+		End_If
+	Else
+		debugMailSend := False;
+	End_If;	
+End_While;	
 End_Task
 

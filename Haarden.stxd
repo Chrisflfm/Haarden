@@ -2,7 +2,9 @@
 <WinSym-SymbolFile FileVersion="1" ProductVersion="5.6.0.4828">
 	<!--
 -->
-	<Rows Count="99">
+	<Rows Count="101">
+		<Symbol/>
+		<Symbol/>
 		<Symbol/>
 		<Symbol/>
 		<Symbol/>
@@ -110,6 +112,6 @@
 		<ColumnWidthType>105</ColumnWidthType>
 		<ColumnWidthDefault>100</ColumnWidthDefault>
 		<ColumnWidthName2>0</ColumnWidthName2>
-		<ColumnWidthComment>789</ColumnWidthComment>
+		<ColumnWidthComment>1055</ColumnWidthComment>
 	</Columns>
 </WinSym-SymbolFile>
