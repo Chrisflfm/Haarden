@@ -19,194 +19,98 @@
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[debugMailSend]]>
+				<![CDATA[debug2]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[202930]]>
-			</Name>
-			<Flags>4</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[292932]]>
-			</Name>
-			<Flags>32</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[292933]]>
-			</Name>
-			<Flags>32</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[292934]]>
+				<![CDATA[debug3]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[292935]]>
+				<![CDATA[TotalCap]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[292937]]>
+				<![CDATA[IstIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[292938]]>
+				<![CDATA[Soll1pct]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[nResult]]>
+				<![CDATA[Soll2pct]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[Ft10_EmailError]]>
+				<![CDATA[IstKlep1]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[bSendError]]>
+				<![CDATA[IstKlep2]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[bInErrActive]]>
+				<![CDATA[mVIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[Temp1L]]>
+				<![CDATA[FactorIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[Temp1R]]>
+				<![CDATA[OffsetIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[OffsetKlep1]]>
+				<![CDATA[IstVentWeb]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[201000 ]]>
+				<![CDATA[Ft01_CapaciteitVent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[SetKlep1]]>
+				<![CDATA[Ft02_IventHoog]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[SetKlep2]]>
+				<![CDATA[Ft03_mailSend]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[hrIvent]]>
+				<![CDATA[Ft04_mailSend]]>
 			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
