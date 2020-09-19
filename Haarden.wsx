@@ -34,18 +34,21 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAANHHAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>246</ViewScrollVert>
-        <IsActiveChildFrame>1</IsActiveChildFrame>
-        <Line>291</Line>
-        <Column>2</Column>
+        <ViewScrollVert>391</ViewScrollVert>
+        <Line>405</Line>
+        <Column>24</Column>
+        <SelectionStartLine>405</SelectionStartLine>
+        <SelectionStartColumn>15</SelectionStartColumn>
+        <SelectionEndLine>405</SelectionEndLine>
+        <SelectionEndColumn>24</SelectionEndColumn>
       </ViewFrame>
     </Document>
     <Document>
       <ViewFrame>
         <DocPathName>HWM:Haarden System\Release\Hardware\Network\JC-340\CPU</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAANHHAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
         <ViewScrollVert>0</ViewScrollVert>
         <Project>Haarden</Project>
@@ -63,9 +66,10 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxs</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAANHHAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
         <ViewScrollHoriz>1</ViewScrollHoriz>
         <ViewScrollVert>1</ViewScrollVert>
+        <IsActiveChildFrame>1</IsActiveChildFrame>
         <Row>16</Row>
         <Column>3</Column>
         <SelectionStartChar>0</SelectionStartChar>
