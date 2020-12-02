@@ -14,7 +14,7 @@
           <CreateDAFile>0</CreateDAFile>
           <DownloadDAFile>0</DownloadDAFile>
           <CreateExportFile>0</CreateExportFile>
-          <MonitorTask>-1</MonitorTask>
+          <MonitorTask>1</MonitorTask>
           <DataDump>
             <CurrentGroupName />
             <ApplyChanges>1</ApplyChanges>
@@ -34,23 +34,20 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxp</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAANOCAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
-        <ViewScrollVert>391</ViewScrollVert>
-        <Line>405</Line>
-        <Column>24</Column>
-        <SelectionStartLine>405</SelectionStartLine>
-        <SelectionStartColumn>15</SelectionStartColumn>
-        <SelectionEndLine>405</SelectionEndLine>
-        <SelectionEndColumn>24</SelectionEndColumn>
+        <ViewScrollVert>355</ViewScrollVert>
+        <Line>399</Line>
+        <Column>25</Column>
       </ViewFrame>
     </Document>
     <Document>
       <ViewFrame>
         <DocPathName>HWM:Haarden System\Release\Hardware\Network\JC-340\CPU</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAANOCAAAAA</WindowPlacement>
         <ViewScrollHoriz>0</ViewScrollHoriz>
         <ViewScrollVert>0</ViewScrollVert>
+        <IsActiveChildFrame>1</IsActiveChildFrame>
         <Project>Haarden</Project>
         <Config>Release</Config>
         <MDIWindowID>CPU</MDIWindowID>
@@ -66,14 +63,13 @@
     <Document>
       <ViewFrame>
         <DocPathName>.\Haarden.stxs</DocPathName>
-        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAAJICAAAAA</WindowPlacement>
+        <WindowPlacement>MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPDAAAAAAADAAAAAAADGGAAAAANOCAAAAA</WindowPlacement>
         <ViewScrollHoriz>1</ViewScrollHoriz>
         <ViewScrollVert>1</ViewScrollVert>
-        <IsActiveChildFrame>1</IsActiveChildFrame>
-        <Row>16</Row>
-        <Column>3</Column>
+        <Row>2</Row>
+        <Column>1</Column>
         <SelectionStartChar>0</SelectionStartChar>
-        <SelectionEndChar>0</SelectionEndChar>
+        <SelectionEndChar>8</SelectionEndChar>
       </ViewFrame>
     </Document>
   </ChildFrames>
@@ -89,6 +85,9 @@
     </Treenode>
     <Treenode>
       <Location>Haarden/Setup</Location>
+    </Treenode>
+    <Treenode>
+      <Location>Haarden/System Files</Location>
     </Treenode>
   </ExpandedTreenodes>
   <ExpandedTreeNodesHWM>

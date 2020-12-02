@@ -91,8 +91,16 @@ Var
 	arIvent: Array[201] Of Array[2] of int;
 	RowPointer:		int;
 	ColumnPointer:	int;
-	IpctVent:		int;
-	//IpctVent2:		int;
+	RowPointer2:	int;
+	IpctVent:			int		at %vl 1000028; //
+	VentBelasting:		int		at %vl 1000029; //
+	istTol1h:		float;
+	istTol1l:		float;
+	istTol2h:		float;
+	istTol2l:		float;
+	TestTemp:		int;
+	testKlep:		int;
+	TestOffset:     int;
 //**********************Fouten*******************************************
 	Ft01_CapaciteitVent:	Bool	at %MX 1; //de vraag capaciteit en de geleverde capiciteti zijn buiten proportie
 	Ft02_IventHoog:			Bool	at %MX 2; //Max stroom overschreden
@@ -117,6 +125,7 @@ Var
 	//debugMailSend:			Bool;//voor debug testen
 	//debug3:					int;
 	LearnIvent:				Bool	at %MX 11; //array opbouwen om Ivent om te rekenen naar pct
+	Waiting:				Bool	at %MX 12;
 //**********************Timers********************************************
 	
 	
@@ -189,248 +198,296 @@ Task tMain Autorun
 	While bInAuto Do
 
 //**************************************Omreken array opbouwen*******************************
-		If LearnIvent then;//start zelfleer loop
+		If LearnIvent then//start zelfleer loop
+			hrIvent:= True;
 			ColumnPointer := 0;//vul eerste kolom van array
-			FOR RowPointer := 0 TO 200 DO // for loop
-				if RowPointer <= 100 then;//eerste klep 1 dan klep 2
-					Soll1 := RowPointer;
-					soll2 := 0;
-				else	//klep 1 is open start met klep 2
-					Soll1 := 100;
-					soll2 := RowPointer - 100;
-				End_If;
-				Soll1 := Soll1 * 0.1; // van % naar mV
-				SetKlep1:= soll1* 32767 / 10; // positioneer de klep
-				Soll2 := Soll2 * 0.1; // van % naar mV
-				SetKlep2:= soll2* 32767 / 10; // positioneer de klep
- 			
-				While not Limits(IstKlep1,Soll1 * 9,Soll1 * 11) and not Limits(IstKlep2,Soll2 * 9,Soll2 * 11) Do //wachten tot klep in positie
-					mVPosKlep1_0_10 := mVPosKlep1*1.25-2.5;//Van 2-10V naar 0-10V
-					IstKlep1 := mVPosKlep1_0_10 * 100 / 32767;
-					mVPosKlep2_0_10 := mVPosKlep2*1.25-2.5;//Van 2-10V naar 0-10V
-					IstKlep2 := mVPosKlep2_0_10 * 100 / 32767;
-				End_While;
-				arIvent[RowPointer,ColumnPointer] := mVIvent;// assigning values
-			
-			END_FOR;
-			ColumnPointer := 1;//vul de tweede kolom nu blijft 2 open en sluit klep 1 langzaam weer
-			FOR RowPointer := 200 TO 0 BY -1 DO// for loop
-				if RowPointer <= 100 then;
-					Soll2 := RowPointer;//klep 2 sluiten
-					soll1 := 0;
-				else
-					Soll2 := 100;
-					soll1 := RowPointer - 100;//klep 1 sluiten
-				End_If;
-				Soll1 := Soll1 * 0.1; // van % naar mV
-				SetKlep1:= soll1* 32767 / 10; // positioneer de klep
-				Soll2 := Soll2 * 0.1; // van % naar mV
-				SetKlep2:= soll2* 32767 / 10; // positioneer de klep
- 			
-				While not Limits(IstKlep1,Soll1 * 9,Soll1 * 11) and not Limits(IstKlep2,Soll2 * 9,Soll2 * 11) Do
-					mVPosKlep1_0_10 := mVPosKlep1*1.25-2.5;//Van 2-10V naar 0-10V
-					IstKlep1 := mVPosKlep1_0_10 * 100 / 32767;
-					mVPosKlep2_0_10 := mVPosKlep2*1.25-2.5;//Van 2-10V naar 0-10V
-					IstKlep2 := mVPosKlep2_0_10 * 100 / 32767;
-				End_While;
-				arIvent[RowPointer,ColumnPointer] := mVIvent;// assigning values
-			
-			END_FOR;
-
-		End_if;
-		LearnIvent := False;//loop afgelopen reset flag
-
-//*************************************sturring haard 1***************************************
-		AvgTemp1 := (Temp1L + Temp1R)/2; //reken met gem temp
-		soll1pct := (Factor1/100) * Avgtemp1 + Offset1; // linair van temp naar % klep open
-		Limits(soll1pct,0,100); //altijd tussen 0% en 100%
-		//Soll1pct :=  debug2;
-		Soll1 := Soll1pct * 0.1; // van % naar mV
-		SetKlep1:= soll1* 32767 / 10; // positioneer de klep
-
-//**************************************sturring haard 2**************************************
-		AvgTemp2 := (Temp2L + Temp2R)/2; //reken met gem temp
-		soll2pct := (Factor2/100) * Avgtemp2 + Offset2; // linair van temp naar % klep open
-		Limits(soll2pct,0,100); //altijd tussen 0% en 100%
-		//Soll2pct:= debug3;
-		Soll2 := Soll2pct * 0.1; // van % naar mV
-		SetKlep2:= soll2* 32767 / 10; // positioneer de klep		
-
-//*************************************sturing ventilator**********************************************
-		if Temp1L >= (MinTempVent + DeltaTMinTVent) or Temp1R >= (MinTempVent + DeltaTMinTVent) or Temp2L >= (MinTempVent + DeltaTMinTVent) or Temp2R >= (MinTempVent + DeltaTMinTVent) then //Als temp hoog geneog moet de ventilator draaien
-			hrIvent := True;
-		End_If
-		
-		if Temp1L < MinTempVent and Temp2L < MinTempVent and Temp1R < MinTempVent and Temp2R < MinTempVent then //ventilator uit als temp laag
-			hrIvent := False;
-		End_If;		
-//*************************************website registers***********************************************
-		IstVentWeb := IstIvent;
-		Limits(IstVentWeb,0,100);
-		IstKlep1Web := IstKlep1;
-		IstKlep2Web := IstKlep2;
-		SollKlep1Web := Soll1pct;
-		SollKlep2Web := Soll2pct;
-
-//************************************Email bewaking************************************************
-		if nResult < 0 then
-			bSendError := True;
-		else	
-			bSendError := False;
-		End_if;
-	End_While;
+			RowPointer := 0;
+			if RowPointer == 0 and ColumnPointer = 0 then
+				Waiting := True;
+			End_If;
+			if Waiting then
+				//Label Loop1:
+				FOR RowPointer := 0 TO 200 DO// for loop
+					if RowPointer <= 100 then//eerste klep 1 dan klep 2
+						Soll1 := RowPointer;
+						soll2 := 0;
+					else	//klep 1 is open start met klep 2
+						Soll1 := 100;
+						soll2 := RowPointer - 100;
+					End_If;
+					Soll1 := Soll1 * 0.1; // van % naar mV
+					SetKlep1:= soll1* 32767 / 10; // positioneer de klep
+					Soll2 := Soll2 * 0.1; // van % naar mV
+					SetKlep2:= soll2* 32767 / 10; // positioneer de klep
+					istTol1l := Soll1 * 0.9;
+					istTol1h := Soll1 * 1.1;
+					if istTol1l == 0 then
+						istTol1l := -0.9;
+					End_If;	
+					if istTol1h == 0 then
+						istTol1h := 0.9;
+					End_If;
+					if istTol2l == 0 then
+						istTol2l := -0.9;
+					End_If;	
+					if istTol2h == 0 then
+						istTol2h := 0.9;
+					End_If;
+					While not Limits(IstKlep1,istTol1l,istTol1h) and not Limits(IstKlep2,istTol2l,istTol2h) Do //wachten tot klep in positie
+						mVPosKlep1_0_10 := mVPosKlep1*1.25-2.5;//Van 2-10V naar 0-10V
+						IstKlep1 := mVPosKlep1_0_10 * 100 / 32767;
+						mVPosKlep2_0_10 := mVPosKlep2*1.25-2.5;//Van 2-10V naar 0-10V
+						IstKlep2 := mVPosKlep2_0_10 * 100 / 32767;
+					End_While;
+					arIvent[RowPointer,ColumnPointer] := mVIvent;// assigning values
+					//RowPointer := RowPointer +1;
+				END_FOR;
+				//if RowPointer < 200 then
+				//	goto Loop1;
+				//End_If;
+			End_If;	
 	
+			if RowPointer >= 200 and ColumnPointer = 0 then
+				Waiting := False;
+			End_If;
+			if not Waiting then	
+				ColumnPointer := 1;//vul de tweede kolom nu blijft 2 open en sluit klep 1 langzaam weer
+				FOR RowPointer := 200 TO 0 BY -1 DO// for loop
+					if RowPointer <= 100 then;
+						Soll2 := RowPointer;//klep 2 sluiten
+						soll1 := 0;
+					else
+						Soll2 := 100;
+						soll1 := RowPointer - 100;//klep 1 sluiten
+					End_If;
+					Soll1 := Soll1 * 0.1; // van % naar mV
+					SetKlep1:= soll1* 32767 / 10; // positioneer de klep
+					Soll2 := Soll2 * 0.1; // van % naar mV
+					SetKlep2:= soll2* 32767 / 10; // positioneer de klep
+					istTol1l := Soll1 * 0.9;
+					istTol1h := Soll1 * 1.1;
+					if istTol1l == 0 then
+						istTol1l := -0.9;
+					End_If;	
+					if istTol1h == 0 then
+						istTol1h := 0.9;
+					End_If;
+					if istTol2l == 0 then
+						istTol2l := -0.9;
+					End_If;	
+					if istTol2h == 0 then
+						istTol2h := 0.9;
+					End_If;
+ 			
+					While not Limits(IstKlep1,istTol1l,istTol1h) and not Limits(IstKlep2,istTol2l,istTol2h) Do
+						mVPosKlep1_0_10 := mVPosKlep1*1.25-2.5;//Van 2-10V naar 0-10V
+						IstKlep1 := mVPosKlep1_0_10 * 100 / 32767;
+						mVPosKlep2_0_10 := mVPosKlep2*1.25-2.5;//Van 2-10V naar 0-10V
+						IstKlep2 := mVPosKlep2_0_10 * 100 / 32767;
+					End_While;
+					arIvent[RowPointer,ColumnPointer] := mVIvent;// assigning values
+			
+				END_FOR;
+			End_If;
+			LearnIvent := False;
+		End_If;
+		
+		if not LearnIvent then
+	//*************************************sturring haard 1***************************************
+			AvgTemp1 := (Temp1L + Temp1R)/2; //reken met gem temp
+			soll1pct := (Factor1/100) * Avgtemp1 + Offset1; // linair van temp naar % klep open
+			Limits(soll1pct,0,100); //altijd tussen 0% en 100%
+			//Soll1pct :=  debug2;
+			Soll1 := Soll1pct * 0.1; // van % naar mV
+			SetKlep1:= soll1* 32767 / 10; // positioneer de klep
+			testKlep := (Factor1/100) * TestTemp + TestOffset;
+			
+	//**************************************sturring haard 2**************************************
+			AvgTemp2 := (Temp2L + Temp2R)/2; //reken met gem temp
+			soll2pct := (Factor2/100) * Avgtemp2 + Offset2; // linair van temp naar % klep open
+			Limits(soll2pct,0,100); //altijd tussen 0% en 100%
+			//Soll2pct:= debug3;
+			Soll2 := Soll2pct * 0.1; // van % naar mV
+			SetKlep2:= soll2* 32767 / 10; // positioneer de klep		
+
+	//*************************************sturing ventilator**********************************************
+			if Temp1L >= (MinTempVent + DeltaTMinTVent) or Temp1R >= (MinTempVent + DeltaTMinTVent) or Temp2L >= (MinTempVent + DeltaTMinTVent) or Temp2R >= (MinTempVent + DeltaTMinTVent) then //Als temp hoog geneog moet de ventilator draaien
+				hrIvent := True;
+			End_If
+	
+			if Temp1L < MinTempVent and Temp2L < MinTempVent and Temp1R < MinTempVent and Temp2R < MinTempVent then //ventilator uit als temp laag
+				hrIvent := False;
+			End_If;		
+	//*************************************website registers***********************************************
+			IstVentWeb := IstIvent;
+			Limits(IstVentWeb,0,100);
+			IstKlep1Web := IstKlep1;
+			IstKlep2Web := IstKlep2;
+			SollKlep1Web := Soll1pct;
+			SollKlep2Web := Soll2pct;
+
+	//************************************Email bewaking************************************************
+			if nResult < 0 then
+				bSendError := True;
+			else	
+				bSendError := False;
+			End_if;
+		end_if;
+	End_While;
+		
 End_Task
 
-Task tError Autorun
-	bInErrActive := True;
+	Task tError Autorun
+		bInErrActive := True;
 
-	While bInErrActive Do
-	//*************************************Ft01_CapaciteitVent****************************************
-		TotalCap := IstKlep1 + IstKlep2; //tel de capaciteit van beide kleppen samen in hun actuele toestand
-		IpctVent := (arIvent[TotalCap,0] + arIvent[TotalCap,1])/2;//wat de stroom waarde zou moeten zijn in mv
-		
-		FOR RowPointer := 0 TO 200 DO // for loop, zoeken wat de % waarde is van de huidige stroom
-			IstIvent := (arIvent[RowPointer,0] + arIvent[RowPointer,1])/2;//neem het gemiddelde van de twee test waarden
-			if mVIvent <= IstIvent then//de stroom waarde die net groter of gelijk is aan de zoek waarde overnemen
-				IstIvent := RowPointer;//de overeenstemmende % waarde van bijde kleppen samen
-				RowPointer := 200;//exit for
+		While bInErrActive Do
+		//*************************************Ft01_CapaciteitVent****************************************
+			TotalCap := IstKlep1 + IstKlep2; //tel de capaciteit van beide kleppen samen in hun actuele toestand
+			//IpctVent := (arIvent[TotalCap,0] + arIvent[TotalCap,1])/2;//wat de stroom waarde zou moeten zijn in mv
+			VentBelasting := IstKlep1/2 + IstKlep2/2;	
+			IpctVent:=(mVIvent/4800)*100;
+			//FOR RowPointer2 := 0 TO 200 DO // for loop, zoeken wat de % waarde is van de huidige stroom
+			//	IstIvent := (arIvent[RowPointer2,0] + arIvent[RowPointer2,1])/2;//neem het gemiddelde van de twee test waarden
+			//	if mVIvent <= IstIvent then//de stroom waarde die net groter of gelijk is aan de zoek waarde overnemen
+			//		IstIvent := RowPointer2;//de overeenstemmende % waarde van bijde kleppen samen
+			//		RowPointer2 := 200;//exit for
+			//	End_If;
+			//End_For
+	
+
+			//if not Limits(IstIvent,IpctVent - 5,IpctVent + 5) Then;//%waarde binnen +-5%
+			//	Ft01_CapaciteitVent := True;
+			//	if not Ft01_mailSend then
+			//		nResult := EmailSend('/EMAIL/Ft01email.cfg');
+			//		Ft01_mailSend := True;
+			//	End_If
+			//else
+			//	Ft01_CapaciteitVent := False;
+			//	Ft01_mailSend := False
+			//End_If
+
+
+		//*************************************Ft02_IventHoog****************************************
+			
+			If ctIventAlm or (IpctVent > 100)  Then //contact geschakeld of stroom hoger dan gemeten waarde bij 200%
+				Ft02_IventHoog := True;
+				if not Ft02_mailSend then
+					nResult := EmailSend('/EMAIL/Ft02email.cfg');
+					Ft02_mailSend := True;
+				End_If
+			Else
+				Ft02_IventHoog := False;
+				Ft02_mailSend := False;
 			End_If;
-		End_For
-		
-	
-		if not Limits(IstIvent,IpctVent - 5,IpctVent + 5) Then;//%waarde binnen +-5%
-			Ft01_CapaciteitVent := True;
-			if not Ft01_mailSend then
-				nResult := EmailSend('/EMAIL/Ft01email.cfg');
-				Ft01_mailSend := True;
-			End_If
-		else
-			Ft01_CapaciteitVent := False;
-			Ft01_mailSend := False
-		End_If
-	
 
-	//*************************************Ft02_IventHoog****************************************
-		If ctIventAlm or (mVIvent > arIvent[200,0] and mVIvent > arIvent[200,1])  Then //contact geschakeld of stroom hoger dan gemeten waarde bij 200%
-			Ft02_IventHoog := True;
-			if not Ft02_mailSend then
-				nResult := EmailSend('/EMAIL/Ft02email.cfg');
-				Ft02_mailSend := True;
-			End_If
-		Else
-			Ft02_IventHoog := False;
-			Ft02_mailSend := False;
-		End_If;
+		//*************************************Ft03_Positieklep1***********************************
+			mVPosKlep1_0_10 := mVPosKlep1;//*1.25-2.5;//Van 2-10V naar 0-10V
+			IstKlep1 := (mVPosKlep1_0_10 * 100 / 32767);//-25;
+			if not Limits(Soll1pct,IstKlep1-25,IstKlep1+5) then;
+				Ft03_Positieklep1 := True;
+				if not Ft03_mailSend then
+					nResult := EmailSend('/EMAIL/Ft03email.cfg');
+					Ft03_mailSend := True;
+				End_If
+			else
+				Ft03_Positieklep1 := False;
+				Ft03_mailSend := False;
+			end_if
 
-	//*************************************Ft03_Positieklep1***********************************
-		mVPosKlep1_0_10 := mVPosKlep1*1.25-2.5;//Van 2-10V naar 0-10V
-		IstKlep1 := mVPosKlep1_0_10 * 100 / 32767;
-		if not Limits(Soll1,IstKlep1-25,IstKlep1+5) then;
-			Ft03_Positieklep1 := True;
-			if not Ft03_mailSend then
-				nResult := EmailSend('/EMAIL/Ft03email.cfg');
-				Ft03_mailSend := True;
-			End_If
-		else
-			Ft03_Positieklep1 := False;
-			Ft03_mailSend := False;
-		end_if
+		//*************************************Ft04_Positieklep2***********************************
+			mVPosKlep2_0_10 := mVPosKlep2;//*1.25-2.5; //Van 2-10V naar 0-10V
+			IstKlep2 := (mVPosKlep2_0_10 * 100 / 32767);//-25;
+			if not Limits(Soll2pct,IstKlep2-25,IstKlep2+5) then;
+				Ft04_Positieklep2 := True;
+				if not Ft04_mailSend then
+					nResult := EmailSend('/EMAIL/Ft04email.cfg');
+					Ft04_mailSend := True;
+				End_If
+			else
+				Ft04_Positieklep2 := False;
+				Ft04_mailSend := False;
+			end_if
 
-	//*************************************Ft04_Positieklep2***********************************
-		mVPosKlep2_0_10 := mVPosKlep2*1.25-2.5; //Van 2-10V naar 0-10V
-		IstKlep2 := mVPosKlep2_0_10 * 100 / 32767;
-		if not Limits(Soll2,IstKlep2-25,IstKlep2+5) then;
-			Ft04_Positieklep2 := True;
-			if not Ft04_mailSend then
-				nResult := EmailSend('/EMAIL/Ft04email.cfg');
-				Ft04_mailSend := True;
-			End_If
-		else
-			Ft04_Positieklep2 := False;
-			Ft04_mailSend := False;
-		end_if
-	
-	//*************************************Ft05_ModuleRtd1************************************
-	//	If StatTemp1L <> 65536 or StatTemp1R <> 65536 or Temp1_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
-	//		Ft05_ModuleRtd1 := True;
-	//		if not Ft05_mailSend then
-	//			nResult := EmailSend('/EMAIL/Ft05email.cfg');
-	//			Ft05_mailSend := True;
-	//		End_If
-	//	Else
-	//		Ft05_ModuleRtd1 := False;
-	//		Ft05_mailSend := False;
-	//	End_If;
-	
-	////*************************************Ft06_ModuleRtd2************************************
-	//	If StatTemp2L <> 65536 or StatTemp2R <> 65536 or Temp2_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
-	//		Ft06_ModuleRtd2 := True;
-	//		if not Ft06_mailSend then
-	//			nResult := EmailSend('/EMAIL/Ft06email.cfg');
-	//			Ft06_mailSend := True;
-	//		End_If
-	//	Else
-	//		Ft06_ModuleRtd2 := False;
-	//		Ft06_mailSend := False;
-	//	End_If;
-	
-	//*************************************Ft07_ModuleAI4**************************************	
-		If AI_Mod <> 0xC1010000 or StatPosKlep1 <> 0x00010000 or StatPosklep2 <> 0x00010000 Then
-			Ft07_ModuleAI4 := True;
-			if not Ft07_mailSend then
-				nResult := EmailSend('/EMAIL/Ft07email.cfg');
-				Ft07_mailSend := True;
-			End_If
-		Else
-			Ft07_ModuleAI4 :=False;
-			Ft07_mailSend := False;
-		End_If;
+		//*************************************Ft05_ModuleRtd1************************************
+		//	If StatTemp1L <> 65536 or StatTemp1R <> 65536 or Temp1_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
+		//		Ft05_ModuleRtd1 := True;
+		//		if not Ft05_mailSend then
+		//			nResult := EmailSend('/EMAIL/Ft05email.cfg');
+		//			Ft05_mailSend := True;
+		//		End_If
+		//	Else
+		//		Ft05_ModuleRtd1 := False;
+		//		Ft05_mailSend := False;
+		//	End_If;
 
-	//**************************************Ft08_ModuleAO4***************************************
-		//If  AO_Mod <> 0 Then
-		//	Ft08_ModuleAO4 := True;
-		//	if not Ft08_mailSend then
-		//		nResult := EmailSend('/EMAIL/Ft08email.cfg');
-		//		Ft08_mailSend := True;
-		//	End_If
-		//Else
-		//	Ft08_ModuleAO4 := False;
-		//	Ft08_mailSend := False;
-		//End_If;
+		////*************************************Ft06_ModuleRtd2************************************
+		//	If StatTemp2L <> 65536 or StatTemp2R <> 65536 or Temp2_ModState <> 0x00210000 Then //bit 16 is hoog alle andere laag bij geen fout or Modulke state fout <> 0x00210000
+		//		Ft06_ModuleRtd2 := True;
+		//		if not Ft06_mailSend then
+		//			nResult := EmailSend('/EMAIL/Ft06email.cfg');
+		//			Ft06_mailSend := True;
+		//		End_If
+		//	Else
+		//		Ft06_ModuleRtd2 := False;
+		//		Ft06_mailSend := False;
+		//	End_If;
 
-	//**************************************Ft09_ModuleDIO16***************************************
-		If  IO_Mod <> 0 Then
-			Ft09_ModuleDIO16 := True;
-			if not Ft09_mailSend then
-				nResult := EmailSend('/EMAIL/Ft09email.cfg');
-				Ft09_mailSend := True;
-			End_If
-		Else
-			Ft09_ModuleDIO16 := False;
-			Ft09_mailSend := False;
-		End_If;
-	//*************************************Ft10_EmailError********************************************
-		// Ft10_EmailError := bSendError;
+		//*************************************Ft07_ModuleAI4**************************************	
+			If AI_Mod <> 0xC1010000 or StatPosKlep1 <> 0x00010000 or StatPosklep2 <> 0x00010000 Then
+				Ft07_ModuleAI4 := True;
+				if not Ft07_mailSend then
+					nResult := EmailSend('/EMAIL/Ft07email.cfg');
+					Ft07_mailSend := True;
+				End_If
+			Else
+				Ft07_ModuleAI4 :=False;
+				Ft07_mailSend := False;
+			End_If;
 
-	//************************************Error*************************************************
-		If 	Ft01_CapaciteitVent or Ft02_IventHoog or Ft03_Positieklep1 or Ft04_Positieklep2  then
-			hrAlm := False;
-		Else
-			hrAlm := True;
-		End_If;
-	
-	////*********************************Dubug testen*****************************************
-	//	If debug Then
-	//		nResult := 1;
-	//		if not debugMailSend then
-	//			nResult := EmailSend('/EMAIL/EmailDefaults.cfg');
-	//			debugMailSend := True;
-	//			debug := False
-	//		End_If
-	//	Else
-	//		debugMailSend := False;
-	//	End_If;	
+		//**************************************Ft08_ModuleAO4***************************************
+			//If  AO_Mod <> 0 Then
+			//	Ft08_ModuleAO4 := True;
+			//	if not Ft08_mailSend then
+			//		nResult := EmailSend('/EMAIL/Ft08email.cfg');
+			//		Ft08_mailSend := True;
+			//	End_If
+			//Else
+			//	Ft08_ModuleAO4 := False;
+			//	Ft08_mailSend := False;
+			//End_If;
+
+		//**************************************Ft09_ModuleDIO16***************************************
+			If  IO_Mod <> 0 Then
+				Ft09_ModuleDIO16 := True;
+				if not Ft09_mailSend then
+					nResult := EmailSend('/EMAIL/Ft09email.cfg');
+					Ft09_mailSend := True;
+				End_If
+			Else
+				Ft09_ModuleDIO16 := False;
+				Ft09_mailSend := False;
+			End_If;
+		//*************************************Ft10_EmailError********************************************
+			// Ft10_EmailError := bSendError;
+
+		//************************************Error*************************************************
+			If 	Ft01_CapaciteitVent or Ft02_IventHoog or Ft03_Positieklep1 or Ft04_Positieklep2  then
+				hrAlm := False;
+			Else
+				hrAlm := True;
+			End_If;
+
+		////*********************************Dubug testen*****************************************
+		//	If debug Then
+		//		nResult := 1;
+		//		if not debugMailSend then
+		//			nResult := EmailSend('/EMAIL/EmailDefaults.cfg');
+		//			debugMailSend := True;
+		//			debug := False
+		//		End_If
+		//	Else
+		//		debugMailSend := False;
+		//	End_If;	
 	End_While;	
 End_Task
 

@@ -1,29 +1,29 @@
 <JetSymST-MakeFile Version="1.0">
   <Project Name="Haarden" Config="Release">
-    <Files Path="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden">
-      <ProgramFile Name="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Haarden.stxp" />
-      <SymbolsFile Name="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Haarden.stxd" />
+    <Files Path="F:\My documents\My JetSymProjects\Haarden">
+      <ProgramFile Name="F:\My documents\My JetSymProjects\Haarden\Haarden.stxp" />
+      <SymbolsFile Name="F:\My documents\My JetSymProjects\Haarden\Haarden.stxd" />
     </Files>
     <Outputs Temp="Release" Path="Release">
-      <ExecFile Name="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Release\Haarden.es3" />
-      <DataFile Name="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Release\HaardenDefaults.stxda" />
-      <ExportFile Name="F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Release\Haarden.jde" />
+      <ExecFile Name="F:\My documents\My JetSymProjects\Haarden\Release\Haarden.es3" />
+      <DataFile Name="F:\My documents\My JetSymProjects\Haarden\Release\HaardenDefaults.stxda" />
+      <ExportFile Name="F:\My documents\My JetSymProjects\Haarden\Release\Haarden.jde" />
     </Outputs>
     <Directives>
       <Define Name="_CONTROLLER_JC_3XX_STX" />
       <Define Name="_CONTROLLER_JC_340_STX" />
       <Define Name="NDEBUG" />
-      <Define Name="__PROJPATH__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Haarden.wsp'" />
-      <Define Name="__PROJDIR__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden'" />
+      <Define Name="__PROJPATH__ 'F:\My documents\My JetSymProjects\Haarden\Haarden.wsp'" />
+      <Define Name="__PROJDIR__ 'F:\My documents\My JetSymProjects\Haarden'" />
       <Define Name="__PROJNAME__ 'Haarden'" />
       <Define Name="__CONFIGURATION__ 'Release'" />
-      <Define Name="__WKSPPATH__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Haarden.wsw'" />
-      <Define Name="__WKSPDIR__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden'" />
+      <Define Name="__WKSPPATH__ 'F:\My documents\My JetSymProjects\Haarden\Haarden.wsw'" />
+      <Define Name="__WKSPDIR__ 'F:\My documents\My JetSymProjects\Haarden'" />
       <Define Name="__WKSPNAME__ 'Haarden'" />
       <Define Name="__CONTROLLER__ 'JC-340'" />
-      <Define Name="__FIRMWARE__ '1.31'" />
-      <Define Name="__TARGETPATH__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Release\Haarden.es3'" />
-      <Define Name="__TARGETDIR__ 'F:\My documents\Heimdall HVAC RV 19A\My JetSymProjects\Haarden\Release'" />
+      <Define Name="__FIRMWARE__ ''" />
+      <Define Name="__TARGETPATH__ 'F:\My documents\My JetSymProjects\Haarden\Release\Haarden.es3'" />
+      <Define Name="__TARGETDIR__ 'F:\My documents\My JetSymProjects\Haarden\Release'" />
       <Define Name="__TARGETNAME__ 'Haarden'" />
       <Define Name="__TARGETEXT__ '.es3'" />
       <Define Name="__JETSYMVERSION__ IP#5.6.0.0" />
@@ -38,10 +38,10 @@
       <IncludeFile Name="Platforms.stxp" />
     </IncludeFiles>
     <Versions>
-      <Version Name="OSVER" Value="287" />
-      <Version Name="STXVER" Value="523" />
-      <Version Name="STDSYSVER" Value="257" />
-      <Version Name="PLATFORMVER" Value="265" />
+      <Version Name="OSVER" Value="256" />
+      <Version Name="STXVER" Value="256" />
+      <Version Name="STDSYSVER" Value="256" />
+      <Version Name="PLATFORMVER" Value="256" />
       <Version Name="COMPATIBLEVER" Value="256" />
     </Versions>
     <Options>

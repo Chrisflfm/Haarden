@@ -13,31 +13,7 @@
 	<Rows>
 		<Row>
 			<Name>
-				<![CDATA[debug]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[debug2]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[debug3]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
 				<![CDATA[TotalCap]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[IstIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
@@ -55,6 +31,24 @@
 		</Row>
 		<Row>
 			<Name>
+				<![CDATA[Avgtemp2]]>
+			</Name>
+			<Flags>32769</Flags>
+		</Row>
+		<Row>
+			<Name>
+				<![CDATA[Factor2]]>
+			</Name>
+			<Flags>32769</Flags>
+		</Row>
+		<Row>
+			<Name>
+				<![CDATA[Offset2]]>
+			</Name>
+			<Flags>32769</Flags>
+		</Row>
+		<Row>
+			<Name>
 				<![CDATA[IstKlep1]]>
 			</Name>
 			<Flags>32769</Flags>
@@ -67,49 +61,49 @@
 		</Row>
 		<Row>
 			<Name>
+				<![CDATA[mVPosKlep1]]>
+			</Name>
+			<Flags>32769</Flags>
+		</Row>
+		<Row>
+			<Name>
+				<![CDATA[SetKlep1]]>
+			</Name>
+			<Flags>32769</Flags>
+		</Row>
+		<Row>
+			<Name>
 				<![CDATA[mVIvent]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[FactorIvent]]>
+				<![CDATA[SetKlep2]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[OffsetIvent]]>
+				<![CDATA[mVPosKlep1]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[IstVentWeb]]>
+				<![CDATA[TestTemp]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[Ft01_CapaciteitVent]]>
+				<![CDATA[testKlep]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
 		<Row>
 			<Name>
-				<![CDATA[Ft02_IventHoog]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[Ft03_mailSend]]>
-			</Name>
-			<Flags>32769</Flags>
-		</Row>
-		<Row>
-			<Name>
-				<![CDATA[Ft04_mailSend]]>
+				<![CDATA[TestOffset]]>
 			</Name>
 			<Flags>32769</Flags>
 		</Row>
